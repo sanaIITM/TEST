@@ -15,7 +15,14 @@ from app import app
 if __name__ == "__main__":
     # CLI mode: if a URL is passed, post questions + data files and print JSON
     if len(sys.argv) >= 2 and sys.argv[1].startswith("http"):
-        url = sys.argv[1]
+        base_url = sys.argv[1].strip()
+        # Ensure we post to the FastAPI endpoint path
+        url = base_url.rstrip('/')
+        if not url.endswith('/api'):
+            url = url + '/api/'
+        else:
+            # normalize to trailing slash
+            url = url + '/'
         cwd = os.getcwd()
         # Collect files: questions.txt (required) and data files
         question_path = os.path.join(cwd, "questions.txt")
@@ -57,8 +64,7 @@ if __name__ == "__main__":
             # Print raw text so harness can JSON.parse(output)
             print(resp.text)
         except Exception as e:
-            print("{}".format("{}" if False else "{}"))  # print empty JSON string if something goes wrong
-            # Fallback minimal JSON object
+            # Print a single empty JSON object on failure
             print("{}")
         finally:
             for fh in opened:
