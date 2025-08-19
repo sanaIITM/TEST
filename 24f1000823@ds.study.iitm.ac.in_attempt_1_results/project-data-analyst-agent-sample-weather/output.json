@@ -1,0 +1,466 @@
+{
+  "evalId": "eval-vY9-2025-08-19T01:42:18",
+  "results": {
+    "version": 3,
+    "timestamp": "2025-08-19T01:42:18.684Z",
+    "prompts": [
+      {
+        "raw": "{{prompt}}",
+        "label": "{{prompt}}",
+        "id": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "provider": "exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"",
+        "metrics": {
+          "score": 0,
+          "testPassCount": 0,
+          "testFailCount": 1,
+          "testErrorCount": 0,
+          "assertPassCount": 0,
+          "assertFailCount": 8,
+          "totalLatencyMs": 8934,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "total": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "error": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+        "gradingResult": {
+          "pass": false,
+          "score": 0,
+          "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "JSON does not conform to the provided schema. Errors: data must have required property 'average_temp_c'",
+              "assertion": {
+                "type": "is-json",
+                "value": {
+                  "type": "object",
+                  "required": [
+                    "average_temp_c",
+                    "max_precip_date",
+                    "min_temp_c",
+                    "temp_precip_correlation",
+                    "average_precip_mm",
+                    "temp_line_chart",
+                    "precip_histogram"
+                  ],
+                  "properties": {
+                    "average_temp_c": {
+                      "type": "number"
+                    },
+                    "max_precip_date": {
+                      "type": "string"
+                    },
+                    "min_temp_c": {
+                      "type": "number"
+                    },
+                    "temp_precip_correlation": {
+                      "type": "number"
+                    },
+                    "average_precip_mm": {
+                      "type": "number"
+                    },
+                    "temp_line_chart": {
+                      "type": "string"
+                    },
+                    "precip_histogram": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'average_temp_c'\nStack Trace: Error: KeyError: 'average_temp_c'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567747670-360d73597929.py\", line 4, in main\n      val = float(output[\"average_temp_c\"])\n                  ~~~~~~^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'max_precip_date'\nStack Trace: Error: KeyError: 'max_precip_date'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567747674-b0588bd902757.py\", line 4, in main\n      if output[\"max_precip_date\"] == \"2024-01-06\":\n         ~~~~~~^^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'min_temp_c'\nStack Trace: Error: KeyError: 'min_temp_c'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567747674-d1a9fc5f897b5.py\", line 4, in main\n      if output[\"min_temp_c\"] == 2:\n         ~~~~~~^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'temp_precip_correlation'\nStack Trace: Error: KeyError: 'temp_precip_correlation'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567747767-0de3e80bbecc4.py\", line 4, in main\n      val = float(output[\"temp_precip_correlation\"])\n                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'average_precip_mm'\nStack Trace: Error: KeyError: 'average_precip_mm'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567747798-173b7315d9f9c.py\", line 4, in main\n      val = float(output[\"average_precip_mm\"])\n                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+              "score": 0,
+              "tokensUsed": {
+                "total": 0,
+                "prompt": 0,
+                "completion": 0,
+                "cached": 0,
+                "numRequests": 0
+              }
+            },
+            {
+              "pass": false,
+              "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+              "score": 0,
+              "tokensUsed": {
+                "total": 0,
+                "prompt": 0,
+                "completion": 0,
+                "cached": 0,
+                "numRequests": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "3cfc11fe-d558-43ee-8b59-6a2324843372",
+        "latencyMs": 8934,
+        "namedScores": {},
+        "prompt": {
+          "raw": "",
+          "label": "{{prompt}}"
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"",
+          "label": ""
+        },
+        "response": {
+          "output": {
+            "What is the average temperature in Celsius?": "The average temperature in Celsius is 5.5.",
+            "On which date was precipitation highest?": "The precipitation was highest on 2024-01-06.",
+            "What is the minimum temperature recorded?": "The minimum temperature recorded is 2 degrees Celsius.",
+            "What is the correlation between temperature and precipitation?": "The correlation between temperature and precipitation is 0.376.",
+            "What is the average precipitation in millimeters?": "The average precipitation in millimeters is 0.9."
+          }
+        },
+        "score": 0,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "question": "Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."
+          },
+          "assert": [
+            {
+              "type": "is-json",
+              "value": {
+                "type": "object",
+                "required": [
+                  "average_temp_c",
+                  "max_precip_date",
+                  "min_temp_c",
+                  "temp_precip_correlation",
+                  "average_precip_mm",
+                  "temp_line_chart",
+                  "precip_histogram"
+                ],
+                "properties": {
+                  "average_temp_c": {
+                    "type": "number"
+                  },
+                  "max_precip_date": {
+                    "type": "string"
+                  },
+                  "min_temp_c": {
+                    "type": "number"
+                  },
+                  "temp_precip_correlation": {
+                    "type": "number"
+                  },
+                  "average_precip_mm": {
+                    "type": "number"
+                  },
+                  "temp_line_chart": {
+                    "type": "string"
+                  },
+                  "precip_histogram": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "llm-rubric",
+              "weight": 8,
+              "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+              "threshold": 0.99,
+              "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+            },
+            {
+              "type": "llm-rubric",
+              "weight": 8,
+              "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+              "threshold": 0.99,
+              "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+            }
+          ],
+          "options": {
+            "provider": {
+              "id": "openai:gpt-4.1-nano"
+            },
+            "transform": "JSON.parse(output)"
+          },
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "question": "Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 1
+      }
+    ],
+    "stats": {
+      "successes": 0,
+      "failures": 1,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 1,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0
+          }
+        }
+      }
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Sample evaluation – network dataset",
+    "prompts": [
+      "{{prompt}}"
+    ],
+    "providers": [
+      "exec: uv run run.py \"{{ env.PROVIDER_URL }}\""
+    ],
+    "tests": [
+      {
+        "vars": {
+          "question": "file://questions.txt"
+        },
+        "assert": [
+          {
+            "type": "is-json",
+            "value": {
+              "type": "object",
+              "required": [
+                "average_temp_c",
+                "max_precip_date",
+                "min_temp_c",
+                "temp_precip_correlation",
+                "average_precip_mm",
+                "temp_line_chart",
+                "precip_histogram"
+              ],
+              "properties": {
+                "average_temp_c": {
+                  "type": "number"
+                },
+                "max_precip_date": {
+                  "type": "string"
+                },
+                "min_temp_c": {
+                  "type": "number"
+                },
+                "temp_precip_correlation": {
+                  "type": "number"
+                },
+                "average_precip_mm": {
+                  "type": "number"
+                },
+                "temp_line_chart": {
+                  "type": "string"
+                },
+                "precip_histogram": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "llm-rubric",
+            "weight": 8,
+            "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+            "threshold": 0.99,
+            "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+          },
+          {
+            "type": "llm-rubric",
+            "weight": 8,
+            "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+            "threshold": 0.99,
+            "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+          }
+        ]
+      }
+    ],
+    "scenarios": [],
+    "env": {},
+    "sharing": true,
+    "defaultTest": {
+      "options": {
+        "provider": {
+          "id": "openai:gpt-4.1-nano"
+        },
+        "transform": "JSON.parse(output)"
+      },
+      "vars": {},
+      "assert": [],
+      "metadata": {}
+    },
+    "outputPath": [
+      "evaluation_logs/24f1000823@ds.study.iitm.ac.in/1/project-data-analyst-agent-sample-weather/output.json"
+    ],
+    "extensions": [],
+    "metadata": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.117.5",
+    "nodeVersion": "v22.16.0",
+    "platform": "linux",
+    "arch": "x64",
+    "exportedAt": "2025-08-19T01:42:28.313Z",
+    "evaluationCreatedAt": "2025-08-19T01:42:18.684Z"
+  }
+}

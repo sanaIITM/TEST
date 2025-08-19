@@ -1,0 +1,466 @@
+{
+  "evalId": "eval-uAR-2025-08-19T01:40:12",
+  "results": {
+    "version": 3,
+    "timestamp": "2025-08-19T01:40:12.767Z",
+    "prompts": [
+      {
+        "raw": "{{prompt}}",
+        "label": "{{prompt}}",
+        "id": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "provider": "exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"",
+        "metrics": {
+          "score": 0,
+          "testPassCount": 0,
+          "testFailCount": 1,
+          "testErrorCount": 0,
+          "assertPassCount": 0,
+          "assertFailCount": 8,
+          "totalLatencyMs": 122078,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "total": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "error": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+        "gradingResult": {
+          "pass": false,
+          "score": 0,
+          "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "JSON does not conform to the provided schema. Errors: data must have required property 'total_sales'",
+              "assertion": {
+                "type": "is-json",
+                "value": {
+                  "type": "object",
+                  "required": [
+                    "total_sales",
+                    "top_region",
+                    "day_sales_correlation",
+                    "bar_chart",
+                    "median_sales",
+                    "total_sales_tax",
+                    "cumulative_sales_chart"
+                  ],
+                  "properties": {
+                    "total_sales": {
+                      "type": "number"
+                    },
+                    "top_region": {
+                      "type": "string"
+                    },
+                    "day_sales_correlation": {
+                      "type": "number"
+                    },
+                    "bar_chart": {
+                      "type": "string"
+                    },
+                    "median_sales": {
+                      "type": "number"
+                    },
+                    "total_sales_tax": {
+                      "type": "number"
+                    },
+                    "cumulative_sales_chart": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'total_sales'\nStack Trace: Error: KeyError: 'total_sales'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567734903-ff11f52f74037.py\", line 4, in main\n      if output[\"total_sales\"] == 1140:\n         ~~~~~~^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'top_region'\nStack Trace: Error: KeyError: 'top_region'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567734907-5c4c27f19d626.py\", line 4, in main\n      if output[\"top_region\"].lower() == \"west\":\n         ~~~~~~^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'day_sales_correlation'\nStack Trace: Error: KeyError: 'day_sales_correlation'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567734908-b4afc2e803d1d.py\", line 4, in main\n      val = float(output[\"day_sales_correlation\"])\n                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'median_sales'\nStack Trace: Error: KeyError: 'median_sales'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567734999-9b597e94afc3b.py\", line 4, in main\n      if output[\"median_sales\"] == 140:\n         ~~~~~~^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Python code execution failed: Error running Python script: KeyError: 'total_sales_tax'\nStack Trace: Error: KeyError: 'total_sales_tax'\n    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)\n    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)\n    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)\n    at ChildProcess.emit (node:events:518:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)\n    --Python Traceback: --\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 39, in <module>\n      result = call_method(script_path, method_name, *data)\n    File \"/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py\", line 28, in call_method\n      return method_to_call(*args)\n    File \"/tmp/temp-python-code-1755567735033-ecd99644ce6a.py\", line 4, in main\n      if output[\"total_sales_tax\"] == 114:\n         ~~~~~~^^^^^^^^^^^^^^^^^^^",
+              "assertion": {
+                "type": "python",
+                "weight": 3,
+                "value": "if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"
+              }
+            },
+            {
+              "pass": false,
+              "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+              "score": 0,
+              "tokensUsed": {
+                "total": 0,
+                "prompt": 0,
+                "completion": 0,
+                "cached": 0,
+                "numRequests": 0
+              }
+            },
+            {
+              "pass": false,
+              "reason": "API error: 400 Bad Request\n{\"error\":{\"message\":\"Invalid base64 image_url.\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"invalid_base64\"}}",
+              "score": 0,
+              "tokensUsed": {
+                "total": 0,
+                "prompt": 0,
+                "completion": 0,
+                "cached": 0,
+                "numRequests": 0
+              }
+            }
+          ],
+          "assertion": null
+        },
+        "id": "6a8fa26c-73d4-4053-b90d-5deec8c10fab",
+        "latencyMs": 122078,
+        "namedScores": {},
+        "prompt": {
+          "raw": "",
+          "label": "{{prompt}}"
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"",
+          "label": ""
+        },
+        "response": {
+          "output": {
+            "What is the total sales across all regions?": "Total sales across all regions is 1040.",
+            "Which region has the highest total sales?": "The region with the highest total sales is West.",
+            "What is the correlation between day of month and sales? (Use the date column.)": "The correlation between day of month and sales is -0.037.",
+            "What is the median sales amount across all orders?": "The median sales amount across all orders is 135.",
+            "What is the total sales tax if the tax rate is 10%?": "The total sales tax at a 10% tax rate is 104."
+          }
+        },
+        "score": 0,
+        "success": false,
+        "testCase": {
+          "vars": {
+            "question": "Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."
+          },
+          "assert": [
+            {
+              "type": "is-json",
+              "value": {
+                "type": "object",
+                "required": [
+                  "total_sales",
+                  "top_region",
+                  "day_sales_correlation",
+                  "bar_chart",
+                  "median_sales",
+                  "total_sales_tax",
+                  "cumulative_sales_chart"
+                ],
+                "properties": {
+                  "total_sales": {
+                    "type": "number"
+                  },
+                  "top_region": {
+                    "type": "string"
+                  },
+                  "day_sales_correlation": {
+                    "type": "number"
+                  },
+                  "bar_chart": {
+                    "type": "string"
+                  },
+                  "median_sales": {
+                    "type": "number"
+                  },
+                  "total_sales_tax": {
+                    "type": "number"
+                  },
+                  "cumulative_sales_chart": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "python",
+              "weight": 3,
+              "value": "if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"
+            },
+            {
+              "type": "llm-rubric",
+              "weight": 8,
+              "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+              "threshold": 0.99,
+              "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+            },
+            {
+              "type": "llm-rubric",
+              "weight": 8,
+              "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+              "threshold": 0.99,
+              "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+            }
+          ],
+          "options": {
+            "provider": {
+              "id": "openai:gpt-4.1-nano"
+            },
+            "transform": "JSON.parse(output)"
+          },
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "vars": {
+          "question": "Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 1
+      }
+    ],
+    "stats": {
+      "successes": 0,
+      "failures": 1,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 1,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0
+          }
+        }
+      }
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Sample evaluation – network dataset",
+    "prompts": [
+      "{{prompt}}"
+    ],
+    "providers": [
+      "exec: uv run run.py \"{{ env.PROVIDER_URL }}\""
+    ],
+    "tests": [
+      {
+        "vars": {
+          "question": "file://questions.txt"
+        },
+        "assert": [
+          {
+            "type": "is-json",
+            "value": {
+              "type": "object",
+              "required": [
+                "total_sales",
+                "top_region",
+                "day_sales_correlation",
+                "bar_chart",
+                "median_sales",
+                "total_sales_tax",
+                "cumulative_sales_chart"
+              ],
+              "properties": {
+                "total_sales": {
+                  "type": "number"
+                },
+                "top_region": {
+                  "type": "string"
+                },
+                "day_sales_correlation": {
+                  "type": "number"
+                },
+                "bar_chart": {
+                  "type": "string"
+                },
+                "median_sales": {
+                  "type": "number"
+                },
+                "total_sales_tax": {
+                  "type": "number"
+                },
+                "cumulative_sales_chart": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "python",
+            "weight": 3,
+            "value": "if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"
+          },
+          {
+            "type": "llm-rubric",
+            "weight": 8,
+            "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+            "threshold": 0.99,
+            "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+          },
+          {
+            "type": "llm-rubric",
+            "weight": 8,
+            "rubricPrompt": "[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n",
+            "threshold": 0.99,
+            "value": "[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n"
+          }
+        ]
+      }
+    ],
+    "scenarios": [],
+    "env": {},
+    "sharing": true,
+    "defaultTest": {
+      "options": {
+        "provider": {
+          "id": "openai:gpt-4.1-nano"
+        },
+        "transform": "JSON.parse(output)"
+      },
+      "vars": {},
+      "assert": [],
+      "metadata": {}
+    },
+    "outputPath": [
+      "evaluation_logs/24f1000823@ds.study.iitm.ac.in/1/project-data-analyst-agent-sample-sales/output.json"
+    ],
+    "extensions": [],
+    "metadata": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.117.5",
+    "nodeVersion": "v22.16.0",
+    "platform": "linux",
+    "arch": "x64",
+    "exportedAt": "2025-08-19T01:42:15.559Z",
+    "evaluationCreatedAt": "2025-08-19T01:40:12.767Z"
+  }
+}

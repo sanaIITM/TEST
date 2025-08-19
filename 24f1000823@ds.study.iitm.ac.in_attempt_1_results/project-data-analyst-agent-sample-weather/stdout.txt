@@ -1,0 +1,277 @@
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1-nano
+[chat.js:25] Using unknown chat model: openai/gpt-4.1-mini
+[chat.js:25] Using unknown chat model: openai/o3-mini
+[updates.js:35] 
+========================================================================================================================
+⚠️ The current version of promptfoo 0.117.5 is lower than the latest available version 0.117.6.
+
+Please run npx promptfoo@latest or npm install -g promptfoo@latest to update.
+========================================================================================================================
+
+[index.js:81] Successfully enabled SQLite WAL mode
+[migrate.js:58] Running database migrations...
+[migrate.js:60] Database migrations completed
+[migrate.js:58] Running database migrations...
+[migrate.js:60] Database migrations completed
+[eval.js:162] Cache is disabled.
+[load.js:210] Setting default prompt because there is no `prompts` field
+[load.js:220] Warning: Expected top-level "prompts" property in config or a test variable named "prompt"
+[index.js:156] Reading prompts from ["{{prompt}}"]
+[filterTests.js:45] Starting filterTests with options: {}
+[filterTests.js:46] Initial test count: 1
+[eval.js:170] Inserting prompt effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982
+[eval.js:193] Inserting dataset 10dabd421e96c11f146924cb1da7d469378e980604dbdd8f215b02fe081de859
+[evaluatorTracing.js:83] [EvaluatorTracing] Checking tracing config: undefined
+[evaluatorTracing.js:84] [EvaluatorTracing] testSuite keys: description,tags,prompts,providers,providerPromptMap,tests,scenarios,defaultTest,derivedMetrics,nunjucksFilters,extensions,tracing
+[evaluatorTracing.js:85] [EvaluatorTracing] Full testSuite.tracing: undefined
+[evaluatorTracing.js:111] [EvaluatorTracing] Tracing not enabled or OTLP HTTP receiver not configured
+[evaluatorTracing.js:112] [EvaluatorTracing] tracing.enabled: undefined
+[evaluatorTracing.js:113] [EvaluatorTracing] tracing.otlp.http.enabled: undefined
+[evaluator.js:711] Starting evaluation eval-vY9-2025-08-19T01:42:18
+[evaluator.js:1279] Running 1 test cases (up to 4 at a time)...
+[evaluatorHelpers.js:161] Loading var question from file: /home/usr_22f3002542_ds_study_iitm_ac_/tds-05-2025-p2-evals/promptfoos/project-data-analyst-agent-sample-weather/questions.txt
+[evaluator.js:395] Provider type: exec: uv run run.py "https://tds-data-agent-final.onrender.com/api/"
+[scriptCompletion.js:62] Could not find any valid files in the command:  uv run run.py "https://tds-data-agent-final.onrender.com/api/"
+[scriptCompletion.js:104] Output from script  uv run run.py "https://tds-data-agent-final.onrender.com/api/": {"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."}
+[evaluator.js:417] Provider response properties: output
+[evaluator.js:418] Provider response cached property explicitly: undefined
+[evaluator.js:437] Evaluator response = {"output":"{\"What is the average temperature in Celsius?\":\"The average temperature in Celsius is ...
+[evaluator.js:438] Evaluator checking cached flag: response.cached = false, provider.delay = 0
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."},{"prompt":"","vars":{"question":"Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["average_temp_c","max_precip_date","min_temp_c","temp_precip_correlation","average_precip_mm","temp_line_chart","precip_histogram"],"properties":{"average_temp_c":{"type":"number"},"max_precip_date":{"type":"string"},"min_temp_c":{"type":"number"},"temp_precip_correlation":{"type":"number"},"average_precip_mm":{"type":"number"},"temp_line_chart":{"type":"string"},"precip_histogram":{"type":"string"}}}},{"type":"python","weight":3,"value":"val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-weather"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."},{"prompt":"","vars":{"question":"Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["average_temp_c","max_precip_date","min_temp_c","temp_precip_correlation","average_precip_mm","temp_line_chart","precip_histogram"],"properties":{"average_temp_c":{"type":"number"},"max_precip_date":{"type":"string"},"min_temp_c":{"type":"number"},"temp_precip_correlation":{"type":"number"},"average_precip_mm":{"type":"number"},"temp_line_chart":{"type":"string"},"precip_histogram":{"type":"string"}}}},{"type":"python","weight":3,"value":"val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-weather"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."},{"prompt":"","vars":{"question":"Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["average_temp_c","max_precip_date","min_temp_c","temp_precip_correlation","average_precip_mm","temp_line_chart","precip_histogram"],"properties":{"average_temp_c":{"type":"number"},"max_precip_date":{"type":"string"},"min_temp_c":{"type":"number"},"temp_precip_correlation":{"type":"number"},"average_precip_mm":{"type":"number"},"temp_line_chart":{"type":"string"},"precip_histogram":{"type":"string"}}}},{"type":"python","weight":3,"value":"val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-weather"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:134] Importing module temp-python-code-1755567747674-b0588bd902757 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567747674-b0588bd902757.py", line 4, in main
+    if output["max_precip_date"] == "2024-01-06":
+       ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'max_precip_date'
+[pythonUtils.js:168] Error running Python script: KeyError: 'max_precip_date'
+Stack Trace: Error: KeyError: 'max_precip_date'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747674-b0588bd902757.py", line 4, in main
+      if output["max_precip_date"] == "2024-01-06":
+         ~~~~~~^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567747674-17ab409c6b33d.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567747674-17ab409c6b33d.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'max_precip_date'
+Stack Trace: Error: KeyError: 'max_precip_date'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747674-b0588bd902757.py", line 4, in main
+      if output["max_precip_date"] == "2024-01-06":
+         ~~~~~~^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."},{"prompt":"","vars":{"question":"Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["average_temp_c","max_precip_date","min_temp_c","temp_precip_correlation","average_precip_mm","temp_line_chart","precip_histogram"],"properties":{"average_temp_c":{"type":"number"},"max_precip_date":{"type":"string"},"min_temp_c":{"type":"number"},"temp_precip_correlation":{"type":"number"},"average_precip_mm":{"type":"number"},"temp_line_chart":{"type":"string"},"precip_histogram":{"type":"string"}}}},{"type":"python","weight":3,"value":"val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-weather"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:134] Importing module temp-python-code-1755567747670-360d73597929 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567747670-360d73597929.py", line 4, in main
+    val = float(output["average_temp_c"])
+                ~~~~~~^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:137] KeyError: 'average_temp_c'
+[pythonUtils.js:134] Importing module temp-python-code-1755567747674-d1a9fc5f897b5 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567747674-d1a9fc5f897b5.py", line 4, in main
+    if output["min_temp_c"] == 2:
+       ~~~~~~^^^^^^^^^^^^^^
+KeyError: 'min_temp_c'
+[pythonUtils.js:168] Error running Python script: KeyError: 'average_temp_c'
+Stack Trace: Error: KeyError: 'average_temp_c'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747670-360d73597929.py", line 4, in main
+      val = float(output["average_temp_c"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567747670-75d466d5a9c78.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567747670-75d466d5a9c78.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'average_temp_c'
+Stack Trace: Error: KeyError: 'average_temp_c'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747670-360d73597929.py", line 4, in main
+      val = float(output["average_temp_c"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the average temperature in Celsius?":"The average temperature in Celsius is 5.5.","On which date was precipitation highest?":"The precipitation was highest on 2024-01-06.","What is the minimum temperature recorded?":"The minimum temperature recorded is 2 degrees Celsius.","What is the correlation between temperature and precipitation?":"The correlation between temperature and precipitation is 0.376.","What is the average precipitation in millimeters?":"The average precipitation in millimeters is 0.9."},{"prompt":"","vars":{"question":"Analyze `sample-weather.csv`.\n\nReturn a JSON object with keys:\n- `average_temp_c`: number\n- `max_precip_date`: string\n- `min_temp_c`: number\n- `temp_precip_correlation`: number\n- `average_precip_mm`: number\n- `temp_line_chart`: base64 PNG string under 100kB\n- `precip_histogram`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the average temperature in Celsius?\n2. On which date was precipitation highest?\n3. What is the minimum temperature recorded?\n4. What is the correlation between temperature and precipitation?\n5. What is the average precipitation in millimeters?\n6. Plot temperature over time as a line chart with a red line. Encode as base64 PNG.\n7. Plot precipitation as a histogram with orange bars. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["average_temp_c","max_precip_date","min_temp_c","temp_precip_correlation","average_precip_mm","temp_line_chart","precip_histogram"],"properties":{"average_temp_c":{"type":"number"},"max_precip_date":{"type":"string"},"min_temp_c":{"type":"number"},"temp_precip_correlation":{"type":"number"},"average_precip_mm":{"type":"number"},"temp_line_chart":{"type":"string"},"precip_histogram":{"type":"string"}}}},{"type":"python","weight":3,"value":"val = float(output[\"average_temp_c\"])\nif abs(val - 5.1) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"max_precip_date\"] == \"2024-01-06\":\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"min_temp_c\"] == 2:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"temp_precip_correlation\"])\nif abs(val - 0.0413519224) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"val = float(output[\"average_precip_mm\"])\nif abs(val - 0.9) <= 0.001:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"temp_line_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"precip_histogram\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-weather"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:168] Error running Python script: KeyError: 'min_temp_c'
+Stack Trace: Error: KeyError: 'min_temp_c'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747674-d1a9fc5f897b5.py", line 4, in main
+      if output["min_temp_c"] == 2:
+         ~~~~~~^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567747674-0c22b3b32a396.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567747674-0c22b3b32a396.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'min_temp_c'
+Stack Trace: Error: KeyError: 'min_temp_c'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747674-d1a9fc5f897b5.py", line 4, in main
+      if output["min_temp_c"] == 2:
+         ~~~~~~^^^^^^^^^^^^^^
+[defaults.js:135] Using OpenAI default providers
+[chat.js:263] Calling https://api.openai.com/v1 API: {"model":"gpt-4.1-nano","messages":[{"role":"system","content":"Grade the temperature line chart. Score 1 only if (a) line chart of temperature over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}"},{"role":"user","content":[{"type":"image_url","image_url":{"url":"data:image/png;base64,"}},{"type":"text","text":""}]}],"max_tokens":1024}
+[pythonUtils.js:134] Importing module temp-python-code-1755567747767-0de3e80bbecc4 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567747767-0de3e80bbecc4.py", line 4, in main
+    val = float(output["temp_precip_correlation"])
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'temp_precip_correlation'
+[pythonUtils.js:168] Error running Python script: KeyError: 'temp_precip_correlation'
+Stack Trace: Error: KeyError: 'temp_precip_correlation'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747767-0de3e80bbecc4.py", line 4, in main
+      val = float(output["temp_precip_correlation"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567747767-90edcb206852b.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567747767-90edcb206852b.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'temp_precip_correlation'
+Stack Trace: Error: KeyError: 'temp_precip_correlation'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747767-0de3e80bbecc4.py", line 4, in main
+      val = float(output["temp_precip_correlation"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[defaults.js:135] Using OpenAI default providers
+[chat.js:263] Calling https://api.openai.com/v1 API: {"model":"gpt-4.1-nano","messages":[{"role":"system","content":"Grade the precipitation histogram. Score 1 only if (a) histogram of precipitation amounts; (b) bars are orange; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {histogram:bool,color:bool,axes:bool,size:bool,score:number}"},{"role":"user","content":[{"type":"image_url","image_url":{"url":"data:image/png;base64,"}},{"type":"text","text":""}]}],"max_tokens":1024}
+[pythonUtils.js:134] Importing module temp-python-code-1755567747798-173b7315d9f9c from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567747798-173b7315d9f9c.py", line 4, in main
+    val = float(output["average_precip_mm"])
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'average_precip_mm'
+[pythonUtils.js:168] Error running Python script: KeyError: 'average_precip_mm'
+Stack Trace: Error: KeyError: 'average_precip_mm'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747798-173b7315d9f9c.py", line 4, in main
+      val = float(output["average_precip_mm"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567747798-30e737872e97a.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567747798-30e737872e97a.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'average_precip_mm'
+Stack Trace: Error: KeyError: 'average_precip_mm'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567747798-173b7315d9f9c.py", line 4, in main
+      val = float(output["average_precip_mm"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+[signal.js:20] Writing to signal file /home/usr_22f3002542_ds_study_iitm_ac_/.promptfoo/evalLastWritten
+[signal.js:22] Successfully wrote to signal file
+[evaluator.js:1245] Eval #1 complete (1 of 1)
+[signal.js:20] Writing to signal file /home/usr_22f3002542_ds_study_iitm_ac_/.promptfoo/evalLastWritten
+[signal.js:22] Successfully wrote to signal file
+[eval.js:308] At least one evaluation failure occurred. This might be caused by the underlying call to the provider, or a test failure. Context: 
+[{"raw":"{{prompt}}","label":"{{prompt}}","id":"effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982","provider":"exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","metrics":{"score":0,"testPassCount":0,"testFailCount":1,"testErrorCount":0,"assertPassCount":0,"assertFailCount":8,"totalLatencyMs":8934,"tokenUsage":{"prompt":0,"completion":0,"cached":0,"total":0,"numRequests":1,"completionDetails":{"reasoning":0,"acceptedPrediction":0,"rejectedPrediction":0},"assertions":{"total":0,"prompt":0,"completion":0,"cached":0,"numRequests":0,"completionDetails":{"reasoning":0,"acceptedPrediction":0,"rejectedPrediction":0}}},"namedScores":{},"namedScoresCount":{},"cost":0}}]
+[eval.js:318] Writing output to evaluation_logs/24f1000823@ds.study.iitm.ac.in/1/project-data-analyst-agent-sample-weather/output.json
+[index.js:284] ========================================================================================================================
+[eval.js:329] ✔ Evaluation complete. ID: eval-vY9-2025-08-19T01:42:18
+
+[eval.js:330] » Run promptfoo view to use the local web viewer
+[eval.js:335] » Do you want to share this with your team? Sign up for free at https://promptfoo.app
+[eval.js:337] » This project needs your feedback. What's one thing we can improve? https://promptfoo.dev/feedback
+[index.js:284] ========================================================================================================================
+[eval.js:437] Duration: 10s (concurrency: 4)
+[eval.js:438] Successes: 0
+[eval.js:439] Failures: 1
+[eval.js:441] Errors: 0
+[eval.js:444] Pass Rate: 0.00%
+[index.js:284] ========================================================================================================================

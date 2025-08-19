@@ -1,0 +1,270 @@
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1
+[chat.js:25] Using unknown chat model: openai/gpt-4.1-nano
+[chat.js:25] Using unknown chat model: openai/gpt-4.1-mini
+[chat.js:25] Using unknown chat model: openai/o3-mini
+[index.js:81] Successfully enabled SQLite WAL mode
+[migrate.js:58] Running database migrations...
+[migrate.js:60] Database migrations completed
+[migrate.js:58] Running database migrations...
+[migrate.js:60] Database migrations completed
+[eval.js:162] Cache is disabled.
+[load.js:210] Setting default prompt because there is no `prompts` field
+[load.js:220] Warning: Expected top-level "prompts" property in config or a test variable named "prompt"
+[index.js:156] Reading prompts from ["{{prompt}}"]
+[filterTests.js:45] Starting filterTests with options: {}
+[filterTests.js:46] Initial test count: 1
+[eval.js:170] Inserting prompt effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982
+[eval.js:193] Inserting dataset 251a9e1ad870e970af11fa9af3b0a408f039c307c8e2afc16f8d12db4f8361b2
+[evaluatorTracing.js:83] [EvaluatorTracing] Checking tracing config: undefined
+[evaluatorTracing.js:84] [EvaluatorTracing] testSuite keys: description,tags,prompts,providers,providerPromptMap,tests,scenarios,defaultTest,derivedMetrics,nunjucksFilters,extensions,tracing
+[evaluatorTracing.js:85] [EvaluatorTracing] Full testSuite.tracing: undefined
+[evaluatorTracing.js:111] [EvaluatorTracing] Tracing not enabled or OTLP HTTP receiver not configured
+[evaluatorTracing.js:112] [EvaluatorTracing] tracing.enabled: undefined
+[evaluatorTracing.js:113] [EvaluatorTracing] tracing.otlp.http.enabled: undefined
+[evaluator.js:711] Starting evaluation eval-uAR-2025-08-19T01:40:12
+[evaluator.js:1279] Running 1 test cases (up to 4 at a time)...
+[evaluatorHelpers.js:161] Loading var question from file: /home/usr_22f3002542_ds_study_iitm_ac_/tds-05-2025-p2-evals/promptfoos/project-data-analyst-agent-sample-sales/questions.txt
+[evaluator.js:395] Provider type: exec: uv run run.py "https://tds-data-agent-final.onrender.com/api/"
+[scriptCompletion.js:62] Could not find any valid files in the command:  uv run run.py "https://tds-data-agent-final.onrender.com/api/"
+[scriptCompletion.js:104] Output from script  uv run run.py "https://tds-data-agent-final.onrender.com/api/": {"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."}
+[evaluator.js:417] Provider response properties: output
+[evaluator.js:418] Provider response cached property explicitly: undefined
+[evaluator.js:437] Evaluator response = {"output":"{\"What is the total sales across all regions?\":\"Total sales across all regions is 1040...
+[evaluator.js:438] Evaluator checking cached flag: response.cached = false, provider.delay = 0
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."},{"prompt":"","vars":{"question":"Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["total_sales","top_region","day_sales_correlation","bar_chart","median_sales","total_sales_tax","cumulative_sales_chart"],"properties":{"total_sales":{"type":"number"},"top_region":{"type":"string"},"day_sales_correlation":{"type":"number"},"bar_chart":{"type":"string"},"median_sales":{"type":"number"},"total_sales_tax":{"type":"number"},"cumulative_sales_chart":{"type":"string"}}}},{"type":"python","weight":3,"value":"if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"},{"type":"python","weight":3,"value":"val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-sales"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."},{"prompt":"","vars":{"question":"Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["total_sales","top_region","day_sales_correlation","bar_chart","median_sales","total_sales_tax","cumulative_sales_chart"],"properties":{"total_sales":{"type":"number"},"top_region":{"type":"string"},"day_sales_correlation":{"type":"number"},"bar_chart":{"type":"string"},"median_sales":{"type":"number"},"total_sales_tax":{"type":"number"},"cumulative_sales_chart":{"type":"string"}}}},{"type":"python","weight":3,"value":"if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"},{"type":"python","weight":3,"value":"val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-sales"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."},{"prompt":"","vars":{"question":"Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["total_sales","top_region","day_sales_correlation","bar_chart","median_sales","total_sales_tax","cumulative_sales_chart"],"properties":{"total_sales":{"type":"number"},"top_region":{"type":"string"},"day_sales_correlation":{"type":"number"},"bar_chart":{"type":"string"},"median_sales":{"type":"number"},"total_sales_tax":{"type":"number"},"cumulative_sales_chart":{"type":"string"}}}},{"type":"python","weight":3,"value":"if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"},{"type":"python","weight":3,"value":"val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-sales"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:134] Importing module temp-python-code-1755567734907-5c4c27f19d626 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567734907-5c4c27f19d626.py", line 4, in main
+    if output["top_region"].lower() == "west":
+       ~~~~~~^^^^^^^^^^^^^^
+KeyError: 'top_region'
+[pythonUtils.js:168] Error running Python script: KeyError: 'top_region'
+Stack Trace: Error: KeyError: 'top_region'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734907-5c4c27f19d626.py", line 4, in main
+      if output["top_region"].lower() == "west":
+         ~~~~~~^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567734907-0f386139c448f.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567734907-0f386139c448f.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'top_region'
+Stack Trace: Error: KeyError: 'top_region'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734907-5c4c27f19d626.py", line 4, in main
+      if output["top_region"].lower() == "west":
+         ~~~~~~^^^^^^^^^^^^^^
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."},{"prompt":"","vars":{"question":"Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["total_sales","top_region","day_sales_correlation","bar_chart","median_sales","total_sales_tax","cumulative_sales_chart"],"properties":{"total_sales":{"type":"number"},"top_region":{"type":"string"},"day_sales_correlation":{"type":"number"},"bar_chart":{"type":"string"},"median_sales":{"type":"number"},"total_sales_tax":{"type":"number"},"cumulative_sales_chart":{"type":"string"}}}},{"type":"python","weight":3,"value":"if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"},{"type":"python","weight":3,"value":"val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-sales"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:134] Importing module temp-python-code-1755567734903-ff11f52f74037 from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567734903-ff11f52f74037.py", line 4, in main
+    if output["total_sales"] == 1140:
+       ~~~~~~^^^^^^^^^^^^^^^
+[pythonUtils.js:137] KeyError: 'total_sales'
+[pythonUtils.js:134] Importing module temp-python-code-1755567734908-b4afc2e803d1d from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567734908-b4afc2e803d1d.py", line 4, in main
+    val = float(output["day_sales_correlation"])
+                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:137] KeyError: 'day_sales_correlation'
+[pythonUtils.js:168] Error running Python script: KeyError: 'total_sales'
+Stack Trace: Error: KeyError: 'total_sales'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734903-ff11f52f74037.py", line 4, in main
+      if output["total_sales"] == 1140:
+         ~~~~~~^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567734903-2733b0b7261fa.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567734903-2733b0b7261fa.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'total_sales'
+Stack Trace: Error: KeyError: 'total_sales'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734903-ff11f52f74037.py", line 4, in main
+      if output["total_sales"] == 1140:
+         ~~~~~~^^^^^^^^^^^^^^^
+[pythonUtils.js:129] Running Python wrapper with args: [{"What is the total sales across all regions?":"Total sales across all regions is 1040.","Which region has the highest total sales?":"The region with the highest total sales is West.","What is the correlation between day of month and sales? (Use the date column.)":"The correlation between day of month and sales is -0.037.","What is the median sales amount across all orders?":"The median sales amount across all orders is 135.","What is the total sales tax if the tax rate is 10%?":"The total sales tax at a 10% tax rate is 104."},{"prompt":"","vars":{"question":"Analyze `sample-sales.csv`.\n\nReturn a JSON object with keys:\n- `total_sales`: number\n- `top_region`: string\n- `day_sales_correlation`: number\n- `bar_chart`: base64 PNG string under 100kB\n- `median_sales`: number\n- `total_sales_tax`: number\n- `cumulative_sales_chart`: base64 PNG string under 100kB\n\nAnswer:\n1. What is the total sales across all regions?\n2. Which region has the highest total sales?\n3. What is the correlation between day of month and sales? (Use the date column.)\n4. Plot total sales by region as a bar chart with blue bars. Encode as base64 PNG.\n5. What is the median sales amount across all orders?\n6. What is the total sales tax if the tax rate is 10%?\n7. Plot cumulative sales over time as a line chart with a red line. Encode as base64 PNG."},"test":{"assert":[{"type":"is-json","value":{"type":"object","required":["total_sales","top_region","day_sales_correlation","bar_chart","median_sales","total_sales_tax","cumulative_sales_chart"],"properties":{"total_sales":{"type":"number"},"top_region":{"type":"string"},"day_sales_correlation":{"type":"number"},"bar_chart":{"type":"string"},"median_sales":{"type":"number"},"total_sales_tax":{"type":"number"},"cumulative_sales_chart":{"type":"string"}}}},{"type":"python","weight":3,"value":"if output[\"total_sales\"] == 1140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"top_region\"].lower() == \"west\":\n  return True\nreturn False    \n"},{"type":"python","weight":3,"value":"val = float(output[\"day_sales_correlation\"])\nif abs(val - 0.2228124549277306) <= 0.001:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"median_sales\"] == 140:\n  return True\nreturn False\n"},{"type":"python","weight":3,"value":"if output[\"total_sales_tax\"] == 114:\n  return True\nreturn False\n"},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"bar_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99},{"type":"llm-rubric","weight":8,"rubricPrompt":"[\n  {\"role\":\"system\",\"content\":\"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}\"},\n  {\"role\":\"user\",\"content\":[\n    {\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,{{output[\"cumulative_sales_chart\"]}}\"}},\n    {\"type\":\"text\",\"text\":\"{{vars.question}}\"}\n  ]}\n]\n","threshold":0.99}],"options":{"provider":{"id":"openai:gpt-4.1-nano"},"transform":"JSON.parse(output)"},"metadata":{}},"provider":{"scriptPath":" uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","options":{"config":{"basePath":"promptfoos/project-data-analyst-agent-sample-sales"},"env":{}},"delay":0,"label":""},"providerResponse":{}}]
+[pythonUtils.js:168] Error running Python script: KeyError: 'day_sales_correlation'
+Stack Trace: Error: KeyError: 'day_sales_correlation'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734908-b4afc2e803d1d.py", line 4, in main
+      val = float(output["day_sales_correlation"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567734908-f43fb0cb42fbb.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567734908-f43fb0cb42fbb.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'day_sales_correlation'
+Stack Trace: Error: KeyError: 'day_sales_correlation'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734908-b4afc2e803d1d.py", line 4, in main
+      val = float(output["day_sales_correlation"])
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+[defaults.js:135] Using OpenAI default providers
+[chat.js:263] Calling https://api.openai.com/v1 API: {"model":"gpt-4.1-nano","messages":[{"role":"system","content":"Grade the bar chart. Score 1 only if (a) bar chart of total sales by region; (b) bars are blue; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {bars:bool,color:bool,axes:bool,size:bool,score:number}"},{"role":"user","content":[{"type":"image_url","image_url":{"url":"data:image/png;base64,"}},{"type":"text","text":""}]}],"max_tokens":1024}
+[pythonUtils.js:134] Importing module temp-python-code-1755567734999-9b597e94afc3b from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567734999-9b597e94afc3b.py", line 4, in main
+    if output["median_sales"] == 140:
+       ~~~~~~^^^^^^^^^^^^^^^^
+KeyError: 'median_sales'
+[pythonUtils.js:168] Error running Python script: KeyError: 'median_sales'
+Stack Trace: Error: KeyError: 'median_sales'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734999-9b597e94afc3b.py", line 4, in main
+      if output["median_sales"] == 140:
+         ~~~~~~^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567734999-e5223cabcfc5b.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567734999-e5223cabcfc5b.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'median_sales'
+Stack Trace: Error: KeyError: 'median_sales'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567734999-9b597e94afc3b.py", line 4, in main
+      if output["median_sales"] == 140:
+         ~~~~~~^^^^^^^^^^^^^^^^
+[defaults.js:135] Using OpenAI default providers
+[chat.js:263] Calling https://api.openai.com/v1 API: {"model":"gpt-4.1-nano","messages":[{"role":"system","content":"Grade the line chart. Score 1 only if (a) line chart of cumulative sales over time; (b) line is red; (c) axes visible and labelled; (d) file size < 100 kB. Respond JSON {line:bool,color:bool,axes:bool,size:bool,score:number}"},{"role":"user","content":[{"type":"image_url","image_url":{"url":"data:image/png;base64,"}},{"type":"text","text":""}]}],"max_tokens":1024}
+[pythonUtils.js:134] Importing module temp-python-code-1755567735033-ecd99644ce6a from /tmp ...
+[pythonUtils.js:137] Traceback (most recent call last):
+[pythonUtils.js:137] File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+    result = call_method(script_path, method_name, *data)
+  File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+    return method_to_call(*args)
+  File "/tmp/temp-python-code-1755567735033-ecd99644ce6a.py", line 4, in main
+    if output["total_sales_tax"] == 114:
+       ~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'total_sales_tax'
+[pythonUtils.js:168] Error running Python script: KeyError: 'total_sales_tax'
+Stack Trace: Error: KeyError: 'total_sales_tax'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567735033-ecd99644ce6a.py", line 4, in main
+      if output["total_sales_tax"] == 114:
+         ~~~~~~^^^^^^^^^^^^^^^^^^^
+[pythonUtils.js:179] Error removing /tmp/promptfoo-python-output-json-1755567735033-a04ba3cded2f7.json: Error: ENOENT: no such file or directory, unlink '/tmp/promptfoo-python-output-json-1755567735033-a04ba3cded2f7.json'
+[wrapper.js:28] Error executing Python code: Error: Error running Python script: KeyError: 'total_sales_tax'
+Stack Trace: Error: KeyError: 'total_sales_tax'
+    at PythonShell.parseError (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:303:21)
+    at terminateIfNeeded (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:193:32)
+    at ChildProcess.<anonymous> (/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/node_modules/python-shell/index.js:185:13)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+    --Python Traceback: --
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 39, in <module>
+      result = call_method(script_path, method_name, *data)
+    File "/home/usr_22f3002542_ds_study_iitm_ac_/.nvm/versions/node/v22.16.0/lib/node_modules/promptfoo/dist/src/python/wrapper.py", line 28, in call_method
+      return method_to_call(*args)
+    File "/tmp/temp-python-code-1755567735033-ecd99644ce6a.py", line 4, in main
+      if output["total_sales_tax"] == 114:
+         ~~~~~~^^^^^^^^^^^^^^^^^^^
+[signal.js:20] Writing to signal file /home/usr_22f3002542_ds_study_iitm_ac_/.promptfoo/evalLastWritten
+[signal.js:22] Successfully wrote to signal file
+[evaluator.js:1245] Eval #1 complete (1 of 1)
+[signal.js:20] Writing to signal file /home/usr_22f3002542_ds_study_iitm_ac_/.promptfoo/evalLastWritten
+[signal.js:22] Successfully wrote to signal file
+[eval.js:308] At least one evaluation failure occurred. This might be caused by the underlying call to the provider, or a test failure. Context: 
+[{"raw":"{{prompt}}","label":"{{prompt}}","id":"effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982","provider":"exec: uv run run.py \"https://tds-data-agent-final.onrender.com/api/\"","metrics":{"score":0,"testPassCount":0,"testFailCount":1,"testErrorCount":0,"assertPassCount":0,"assertFailCount":8,"totalLatencyMs":122078,"tokenUsage":{"prompt":0,"completion":0,"cached":0,"total":0,"numRequests":1,"completionDetails":{"reasoning":0,"acceptedPrediction":0,"rejectedPrediction":0},"assertions":{"total":0,"prompt":0,"completion":0,"cached":0,"numRequests":0,"completionDetails":{"reasoning":0,"acceptedPrediction":0,"rejectedPrediction":0}}},"namedScores":{},"namedScoresCount":{},"cost":0}}]
+[eval.js:318] Writing output to evaluation_logs/24f1000823@ds.study.iitm.ac.in/1/project-data-analyst-agent-sample-sales/output.json
+[index.js:284] ========================================================================================================================
+[eval.js:329] ✔ Evaluation complete. ID: eval-uAR-2025-08-19T01:40:12
+
+[eval.js:330] » Run promptfoo view to use the local web viewer
+[eval.js:335] » Do you want to share this with your team? Sign up for free at https://promptfoo.app
+[eval.js:337] » This project needs your feedback. What's one thing we can improve? https://promptfoo.dev/feedback
+[index.js:284] ========================================================================================================================
+[eval.js:437] Duration: 2m 3s (concurrency: 4)
+[eval.js:438] Successes: 0
+[eval.js:439] Failures: 1
+[eval.js:441] Errors: 0
+[eval.js:444] Pass Rate: 0.00%
+[index.js:284] ========================================================================================================================
